@@ -1,5 +1,6 @@
 
 const{v4:uuidv4} = require("uuid");
+
 const User = require("../models/user.model")
 
 const getAllUsers = async(req,res)=>{
@@ -30,6 +31,7 @@ const createUser = async(req,res)=>{
             id : uuidv4(),
             name : req.body.name,
             age :  Number(req.body.age),
+            image: req.file ? req.file.filename : null
         })
     await newUser.save();
     res.status(201).json(
